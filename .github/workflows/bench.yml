@@ -1,0 +1,165 @@
+name: bench
+# Public replay of testonce (github.com/jawauntb/testonce) on open-source hardware projects.
+# The oracle is each project's own test command run plainly at every commit; a false skip is a test
+# testonce skipped while the oracle failed it. One job per subject on a GitHub-hosted runner; a final
+# job commits every job's results and receipt under results/<run id>/ and rebuilds the table in README.md.
+on:
+  workflow_dispatch:
+    inputs:
+      testonce_ref: { description: 'testonce branch, tag or commit to replay', default: 'main' }
+      only: { description: 'subjects to run, space separated (blank = all)', default: '' }
+  schedule:
+    - cron: '17 6 * * 1' # Mondays 06:17 UTC
+permissions: { contents: write }
+concurrency: { group: bench, cancel-in-progress: false }
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+      sha: ${{ steps.m.outputs.sha }}
+    steps:
+      - id: m
+        env: { REF: "${{ inputs.testonce_ref || 'main' }}", ONLY: '${{ inputs.only }}' }
+        run: |
+          sha=$(git ls-remote https://github.com/jawauntb/testonce "$REF" | head -n 1 | cut -f1)
+          [ -n "$sha" ] || sha="$REF" # a full commit sha is not listed by ls-remote
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          python3 - >> "$GITHUB_OUTPUT" <<'PY'
+          import json, os
+          # openc910 ISA_FP is left out: its program uses half-precision ops the public XuanTie assembler rejects.
+          # openc910 ISA_IMAC is left out: it fails plainly with the public prebuilt XuanTie GCC.
+          jobs = [{'subject': s, 'tag': '', 'args': ''} for s in ['verilog-axis', 'wb2axip', 'wb2axip-configured']]
+          jobs += [{'subject': 'openc910', 'tag': c, 'args': f'--tests {c} --jobs 1 --faults 1'} for c in ['hello_world', 'ISA_AMO', 'csr']]
+          only = os.environ.get('ONLY', '').split()
+          print('matrix=' + json.dumps([j for j in jobs if not only or j['subject'] in only]))
+          PY
+  replay:
+    needs: plan
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    defaults: { run: { working-directory: testonce } }
+    env:
+      GH_TOKEN: ${{ github.token }}
+      NAME: ${{ matrix.subject }}${{ matrix.tag && '-' || '' }}${{ matrix.tag }}
+      REPLAY_ARGS: ${{ matrix.args }} --budget-min 270${{ matrix.tag && ' --tag ' || '' }}${{ matrix.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: jawauntb/testonce, ref: '${{ needs.plan.outputs.sha }}', path: testonce }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: .
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq strace
+      - name: Tools for verilog-axis (cocotb + Icarus, versions pinned by the subject's tox.ini)
+        if: startsWith(matrix.subject, 'verilog-axis')
+        run: |
+          sudo apt-get install -y -qq iverilog
+          echo "PIP=1" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        if: startsWith(matrix.subject, 'verilog-axis')
+        with: { python-version: '3.10' }
+      - if: startsWith(matrix.subject, 'verilog-axis')
+        run: pip install -q pytest==7.2.1 cocotb==1.7.2 cocotb-bus==0.2.1 cocotb-test==0.2.4 cocotbext-axi==0.1.20 jinja2==3.1.2
+      - name: Tools for wb2axip (SymbiYosys from the latest oss-cad-suite build)
+        if: startsWith(matrix.subject, 'wb2axip')
+        run: |
+          tag=$(curl -sSf -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/YosysHQ/oss-cad-suite-build/releases/latest | python3 -c 'import json,sys; print(json.load(sys.stdin)["tag_name"])')
+          url="https://github.com/YosysHQ/oss-cad-suite-build/releases/download/$tag/oss-cad-suite-linux-x64-${tag//-/}.tgz"
+          curl -sSfL "$url" -o "$RUNNER_TEMP/ocs.tgz"
+          echo "oss-cad-suite $tag $(sha256sum "$RUNNER_TEMP/ocs.tgz" | cut -d' ' -f1)" >> "$RUNNER_TEMP/toolsrc.txt"
+          tar -xzf "$RUNNER_TEMP/ocs.tgz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/oss-cad-suite/bin" >> "$GITHUB_PATH"
+      # openc910's smart_run passes Verilator 4 flags (-Os) that Verilator 5 rejects, so the last 4.x release is built once and cached.
+      - uses: actions/cache@v4
+        if: matrix.subject == 'openc910'
+        id: vcache
+        with: { path: ~/verilator-4.228, key: verilator-4.228-ubuntu-24.04 }
+      - name: Build Verilator 4.228
+        if: matrix.subject == 'openc910' && steps.vcache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get install -y -qq autoconf flex bison help2man libfl-dev zlib1g-dev perl
+          git clone -q --depth 1 -b v4.228 https://github.com/verilator/verilator "$RUNNER_TEMP/vsrc"
+          cd "$RUNNER_TEMP/vsrc" && autoconf && ./configure -q --prefix="$HOME/verilator-4.228" && make -s -j"$(nproc)" && make -s install
+      - name: Tools for openc910 (Verilator 4.228, XuanTie GCC from its GitHub release)
+        if: matrix.subject == 'openc910'
+        run: |
+          echo "$HOME/verilator-4.228/bin" >> "$GITHUB_PATH"
+          echo "C910_JOBS=$(nproc)" >> "$GITHUB_ENV"
+          curl -sSf -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/XUANTIE-RV/xuantie-gnu-toolchain/releases?per_page=20" > "$RUNNER_TEMP/rel.json"
+          # The tagged releases ship source only; the newest prebuilt bare-metal (elf) x86_64 build is a nightly.
+          url=$(python3 - "$RUNNER_TEMP/rel.json" <<'PY'
+          import json, re, sys
+          for r in json.load(open(sys.argv[1])):
+              for a in r['assets']:
+                  if re.search(r'^riscv64-elf-ubuntu-20\.04-.*\.tar\.gz$', a['name']):
+                      print(a['browser_download_url']); sys.exit()
+          sys.exit('no riscv64-elf x86_64 asset in: ' + ' '.join(a['name'] for r in json.load(open(sys.argv[1])) for a in r['assets']))
+          PY
+          )
+          curl -sSfL "$url" -o "$RUNNER_TEMP/xt.tgz"
+          echo "xuantie-gcc $url $(sha256sum "$RUNNER_TEMP/xt.tgz" | cut -d' ' -f1)" >> "$RUNNER_TEMP/toolsrc.txt"
+          mkdir -p "$RUNNER_TEMP/xt" && tar -xzf "$RUNNER_TEMP/xt.tgz" -C "$RUNNER_TEMP/xt"
+          bin=$(dirname "$(find "$RUNNER_TEMP/xt" -name riscv64-unknown-elf-gcc -type f | head -n 1)")
+          echo "XUANTIE_BIN=$bin" >> "$GITHUB_ENV"
+      - name: Preflight (openc910) - build the case program alone and show its log
+        if: matrix.subject == 'openc910'
+        run: |
+          git clone -q --depth 1 https://github.com/XUANTIE-RV/openc910 "$RUNNER_TEMP/c910"
+          cd "$RUNNER_TEMP/c910/smart_run" && mkdir -p work
+          export CODE_BASE_PATH="$RUNNER_TEMP/c910/C910_RTL_FACTORY" TOOL_EXTENSION="$XUANTIE_BIN"
+          set +e; make SHELL=/bin/bash buildcase CASE=${{ matrix.tag }}; code=$?; set -e
+          cat work/*.case.log || true
+          ls work | head -n 40
+          exit $code
+      - name: Record tool versions
+        run: |
+          mkdir -p out
+          {
+            echo "node $(node --version)"; echo "strace $(strace -V | head -n 1)"; echo "kernel $(uname -r)"; echo "nproc $(nproc)"
+            cat "$RUNNER_TEMP/toolsrc.txt" 2>/dev/null || true
+            command -v iverilog >/dev/null && echo "iverilog $(iverilog -V 2>&1 | head -n 1)"
+            command -v python3 >/dev/null && echo "python $(python3 --version 2>&1)"
+            [ -n "${PIP:-}" ] && pip freeze | grep -iE '^(pytest|cocotb|cocotb-bus|cocotb-test|cocotbext-axi|jinja2)=='
+            command -v sby >/dev/null && echo "yosys $(yosys -V 2>&1 | head -n 1)"
+            command -v verilator >/dev/null && echo "verilator $(verilator --version 2>&1 | head -n 1)"
+            [ -n "${XUANTIE_BIN:-}" ] && echo "riscv64-unknown-elf-gcc $("$XUANTIE_BIN/riscv64-unknown-elf-gcc" --version | head -n 1)"
+            true
+          } > out/versions-$NAME.txt
+          cat out/versions-$NAME.txt
+      - name: Replay
+        run: |
+          set +e
+          node bench/replay.mjs ${{ matrix.subject }} $REPLAY_ARGS --out out
+          echo $? > out/exit-$NAME
+      - name: Receipt
+        if: always()
+        run: |
+          [ -f out/$NAME.json ] || { echo "no final results (see out/$NAME.partial.json)"; exit 1; }
+          node bench/rtl/receipt.mjs out/$NAME.json out/versions-$NAME.txt "$(cat out/exit-$NAME)" > out/receipt-$NAME.json
+          cat out/receipt-$NAME.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'bench-${{ env.NAME }}', path: testonce/out/ }
+      - name: Fail on a false skip
+        run: test "$(cat out/exit-$NAME)" = 0
+  publish:
+    needs: [plan, replay]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/download-artifact@v4
+        with: { path: 'results/${{ github.run_id }}', merge-multiple: true }
+      - name: Commit results and rebuild the table
+        run: |
+          echo '${{ needs.plan.outputs.sha }}' > results/${{ github.run_id }}/testonce-commit.txt
+          node scripts/table.mjs
+          git add -A results README.md
+          git -c user.name=testoncebench -c user.email=bench@testonce.invalid commit -qm "results: run ${{ github.run_id }} on testonce ${{ needs.plan.outputs.sha }}" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done; exit 1
