@@ -1,0 +1,184 @@
+{
+ "kind": "testonce replay receipt",
+ "subject": "wb2axip",
+ "subject_url": "https://github.com/ZipCPU/wb2axip",
+ "subject_head": "2e8d3bc2d26ddc33d1881022a2a2b9d3f0c16b9b",
+ "commits": [
+  {
+   "sha": "956306402dbe0581ed12734334014dac5ee31c3e",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 146.3,
+   "plain_wall_s": 138.7
+  },
+  {
+   "sha": "3b0ae71ff1fec64dd4b3666ce674a3d0a6f0dec1",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 148.5,
+   "plain_wall_s": 134.3
+  },
+  {
+   "sha": "8ea6f5ce9adb13de6d617770dac3b649e7e52462",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 141.5,
+   "plain_wall_s": 134.2
+  },
+  {
+   "sha": "f02d5203d927842743fdc199fb0e60f23af65282",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 146.4,
+   "plain_wall_s": 136
+  },
+  {
+   "sha": "70f9d2b041742fb1823208c4ff4b0a099e669b5e",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 150.7,
+   "plain_wall_s": 137.7
+  },
+  {
+   "sha": "df8e7649acf68544a152e39a4589c8e894a4cd0b",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 154.7,
+   "plain_wall_s": 141.4
+  },
+  {
+   "sha": "64f4c351c889379ccea0d12761c10bdf4cd8d467",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 149.3,
+   "plain_wall_s": 134.9
+  },
+  {
+   "sha": "2e8d3bc2d26ddc33d1881022a2a2b9d3f0c16b9b",
+   "tests": 20,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 145.8,
+   "plain_wall_s": 132.3
+  }
+ ],
+ "headline": {
+  "false_skips": 0,
+  "false_skips_confirmed": 0,
+  "skip_rate_after_first_commit": 0,
+  "wall_s_plain_after_first": 950.8,
+  "wall_s_testonce_after_first": 1036.9,
+  "speedup_after_first_commit": 0.92,
+  "speedup_all_commits": 0.92,
+  "first_run_tracing_overhead": {
+   "sing_cpu_s": 520.9,
+   "plain_cpu_s": 479.9,
+   "ratio": 1.09,
+   "wall_ratio": 1.05
+  },
+  "fault_injection": {
+   "slots": 3,
+   "effective_faults": 3,
+   "newly_failing_tests": 5,
+   "detected_tests": 5,
+   "faults_fully_detected": 3,
+   "detection_rate_by_fault": 1,
+   "detection_rate_by_test": 1,
+   "reverts_clean": true
+  },
+  "path_filter_baseline": {
+   "rule": "skip a commit whose changed files all match /^(?:docs?\\/|.*\\.(?:md|png|jpe?g|gif|svg|pdf|txt)$|README|LICENSE|AUTHORS|COPYING|\\.gitignore$)/i",
+   "wall_s_after_first": 816.5,
+   "speedup_of_testonce_over_path_filter": 0.79,
+   "commits": [
+    {
+     "sha": "3b0ae71ff1fec64dd4b3666ce674a3d0a6f0dec1",
+     "changed_files": 0,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    },
+    {
+     "sha": "8ea6f5ce9adb13de6d617770dac3b649e7e52462",
+     "changed_files": 1,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 134.2
+    },
+    {
+     "sha": "f02d5203d927842743fdc199fb0e60f23af65282",
+     "changed_files": 1,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 136
+    },
+    {
+     "sha": "70f9d2b041742fb1823208c4ff4b0a099e669b5e",
+     "changed_files": 1,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 137.7
+    },
+    {
+     "sha": "df8e7649acf68544a152e39a4589c8e894a4cd0b",
+     "changed_files": 1,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 141.4
+    },
+    {
+     "sha": "64f4c351c889379ccea0d12761c10bdf4cd8d467",
+     "changed_files": 4,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 134.9
+    },
+    {
+     "sha": "2e8d3bc2d26ddc33d1881022a2a2b9d3f0c16b9b",
+     "changed_files": 20,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 132.3
+    }
+   ]
+  }
+ },
+ "how_to_read": "The oracle is the subject's own test command run plainly at every commit. A false skip is a test testonce skipped while the oracle failed. Speedup is plain wall time over testonce wall time on the same machine, same commits, same job count. The first commit is cold (nothing cached) and is excluded from the after-first numbers.",
+ "replay_exit_code": 0,
+ "testonce_git_head": "4f03e9e80ad3562a2f4f5699ea10546fa5b10d1b",
+ "sha256": {
+  "out/wb2axip.json": "d695180d8d5cb51820066d7f5fe221b9009c611c149393fc2e9f0e4c04785396",
+  "out/versions-wb2axip.txt": "24540b5956b9a3c73bc2271cbaf36e2499146539036ce0a7d07dafb963e45412",
+  "bench/replay.mjs": "24a6cabb951f46bc3b820ad438dfb304b675e6ab152f2cb482a4c23a26954c02",
+  "bench/subjects.json": "9ad882f949f7376e02447eb76b4c0f065e5c0c575cd8b38aee6300a7ebf5fada",
+  "bench/rtl/sby.sh": "e86a9af53de861dd6db5cb6dce61d4a4a575fccd7704c6500dacbdd4d29b92b8"
+ },
+ "tools": [
+  "node v22.23.3",
+  "strace strace -- version 6.8",
+  "kernel 6.17.0-1022-azure",
+  "nproc 4",
+  "oss-cad-suite 2026-10-12 2eb5c50cc03fa817f0fa9b8cccbfef9584528433a13e693792514326b63451de",
+  "iverilog Icarus Verilog version 14.0 (devel) (s20260301-564-gbe5984bb9-dirty)",
+  "python Python 3.12.3",
+  "yosys Yosys 0.69+276 (git sha1 e83399dcf, Release, Clang /usr/bin/clang++ 21.1.8)",
+  "verilator Verilator 5.053 devel rev v5.052-379-g37301a1ba (mod)"
+ ],
+ "machine": {
+  "nproc": 4,
+  "mem_gb": 15.6,
+  "kernel": "6.17.0-1022-azure",
+  "runner": "GitHub Actions 1000013482",
+  "image": "ubuntu24 20261004.327.1"
+ },
+ "run": {
+  "url": "https://github.com/jawauntb/testoncebench/actions/runs/38271087251",
+  "attempt": "1",
+  "workflow_sha": "59bdc48ab8003d3935d5445afb386cbf9f53751f",
+  "job": "replay"
+ },
+ "rerun": "node bench/replay.mjs wb2axip  --budget-min 270",
+ "total_runtime_s": 4374,
+ "generated_at": "2026-10-12T16:46:53.152Z",
+ "git_status_clean": true
+}

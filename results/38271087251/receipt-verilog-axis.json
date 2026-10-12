@@ -1,0 +1,158 @@
+{
+ "kind": "testonce replay receipt",
+ "subject": "verilog-axis",
+ "subject_url": "https://github.com/alexforencich/verilog-axis",
+ "subject_head": "48ff7a7e2ef782cf778d47910cf85835c64b1bce",
+ "commits": [
+  {
+   "sha": "c6ecd770e731f8d6c02a4501b776d4a8e3baea9b",
+   "tests": 15,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 417.9,
+   "plain_wall_s": 402.2
+  },
+  {
+   "sha": "10b6d2f5bc50f965d6aee213415b60f1f9af58e5",
+   "tests": 15,
+   "skipped": 14,
+   "false_skips": 0,
+   "testonce_wall_s": 198.2,
+   "plain_wall_s": 400.5
+  },
+  {
+   "sha": "c1c3dc0b66e98a186878b32a4d65cdcd00eaa358",
+   "tests": 15,
+   "skipped": 13,
+   "false_skips": 0,
+   "testonce_wall_s": 202.6,
+   "plain_wall_s": 401.1
+  },
+  {
+   "sha": "664ab9f664475df9245421d8c793763f7dccecf5",
+   "tests": 15,
+   "skipped": 7,
+   "false_skips": 0,
+   "testonce_wall_s": 322.8,
+   "plain_wall_s": 402.1
+  },
+  {
+   "sha": "d4074ed53f134b5c40d5a4777a1b3b10d6b53f75",
+   "tests": 15,
+   "skipped": 14,
+   "false_skips": 0,
+   "testonce_wall_s": 40.3,
+   "plain_wall_s": 402.4
+  },
+  {
+   "sha": "48ff7a7e2ef782cf778d47910cf85835c64b1bce",
+   "tests": 15,
+   "skipped": 15,
+   "false_skips": 0,
+   "testonce_wall_s": 0.4,
+   "plain_wall_s": 402.6
+  }
+ ],
+ "headline": {
+  "false_skips": 0,
+  "false_skips_confirmed": 0,
+  "skip_rate_after_first_commit": 0.84,
+  "wall_s_plain_after_first": 2008.7,
+  "wall_s_testonce_after_first": 764.3,
+  "speedup_after_first_commit": 2.63,
+  "speedup_all_commits": 2.04,
+  "first_run_tracing_overhead": {
+   "sing_cpu_s": 1498.5,
+   "plain_cpu_s": 1434.3,
+   "ratio": 1.04,
+   "wall_ratio": 1.04
+  },
+  "fault_injection": {
+   "slots": 3,
+   "effective_faults": 3,
+   "newly_failing_tests": 7,
+   "detected_tests": 7,
+   "faults_fully_detected": 3,
+   "detection_rate_by_fault": 1,
+   "detection_rate_by_test": 1,
+   "reverts_clean": true
+  },
+  "path_filter_baseline": {
+   "rule": "skip a commit whose changed files all match /^(?:docs?\\/|.*\\.(?:md|png|jpe?g|gif|svg|pdf|txt)$|README|LICENSE|AUTHORS|COPYING|\\.gitignore$)/i",
+   "wall_s_after_first": 1606.1,
+   "speedup_of_testonce_over_path_filter": 2.1,
+   "commits": [
+    {
+     "sha": "10b6d2f5bc50f965d6aee213415b60f1f9af58e5",
+     "changed_files": 1,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 400.5
+    },
+    {
+     "sha": "c1c3dc0b66e98a186878b32a4d65cdcd00eaa358",
+     "changed_files": 2,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 401.1
+    },
+    {
+     "sha": "664ab9f664475df9245421d8c793763f7dccecf5",
+     "changed_files": 24,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 402.1
+    },
+    {
+     "sha": "d4074ed53f134b5c40d5a4777a1b3b10d6b53f75",
+     "changed_files": 2,
+     "path_filter_runs": true,
+     "path_filter_wall_s": 402.4
+    },
+    {
+     "sha": "48ff7a7e2ef782cf778d47910cf85835c64b1bce",
+     "changed_files": 1,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    }
+   ]
+  }
+ },
+ "how_to_read": "The oracle is the subject's own test command run plainly at every commit. A false skip is a test testonce skipped while the oracle failed. Speedup is plain wall time over testonce wall time on the same machine, same commits, same job count. The first commit is cold (nothing cached) and is excluded from the after-first numbers.",
+ "replay_exit_code": 0,
+ "testonce_git_head": "4f03e9e80ad3562a2f4f5699ea10546fa5b10d1b",
+ "sha256": {
+  "out/verilog-axis.json": "7ac4e69ce151320395d3dabddfec9e684d3f96e01d66393bb7c3d242625b2bd4",
+  "out/versions-verilog-axis.txt": "4d297375c21630d27e52b2777cf6ecf6dbb96086311da1500db8abb3d8976402",
+  "bench/replay.mjs": "24a6cabb951f46bc3b820ad438dfb304b675e6ab152f2cb482a4c23a26954c02",
+  "bench/subjects.json": "9ad882f949f7376e02447eb76b4c0f065e5c0c575cd8b38aee6300a7ebf5fada"
+ },
+ "tools": [
+  "node v22.23.3",
+  "strace strace -- version 6.8",
+  "kernel 6.17.0-1022-azure",
+  "nproc 4",
+  "iverilog Icarus Verilog version 12.0 (stable) ()",
+  "python Python 3.10.22",
+  "cocotb==1.7.2",
+  "cocotb-bus==0.2.1",
+  "cocotb-test==0.2.4",
+  "cocotbext-axi==0.1.20",
+  "Jinja2==3.1.2",
+  "pytest==7.2.1"
+ ],
+ "machine": {
+  "nproc": 4,
+  "mem_gb": 15.6,
+  "kernel": "6.17.0-1022-azure",
+  "runner": "GitHub Actions 1000013485",
+  "image": "ubuntu24 20261004.327.1"
+ },
+ "run": {
+  "url": "https://github.com/jawauntb/testoncebench/actions/runs/38271087251",
+  "attempt": "1",
+  "workflow_sha": "59bdc48ab8003d3935d5445afb386cbf9f53751f",
+  "job": "replay"
+ },
+ "rerun": "node bench/replay.mjs verilog-axis  --budget-min 270",
+ "total_runtime_s": 6092,
+ "generated_at": "2026-10-12T17:15:32.602Z",
+ "git_status_clean": true
+}
