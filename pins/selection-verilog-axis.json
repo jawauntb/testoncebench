@@ -1,0 +1,22 @@
+{
+ "subject": "verilog-axis",
+ "newest": "48ff7a7e2ef782cf778d47910cf85835c64b1bce",
+ "rule": "first 24 files in name order whose oracle exit is 0 within 300s at the newest replayed commit",
+ "files": [
+  "tb/axis_adapter/test_axis_adapter.py",
+  "tb/axis_arb_mux/test_axis_arb_mux.py",
+  "tb/axis_broadcast/test_axis_broadcast.py",
+  "tb/axis_cobs_decode/test_axis_cobs_decode.py",
+  "tb/axis_cobs_encode/test_axis_cobs_encode.py",
+  "tb/axis_demux/test_axis_demux.py",
+  "tb/axis_mux/test_axis_mux.py",
+  "tb/axis_pipeline_fifo/test_axis_pipeline_fifo.py",
+  "tb/axis_pipeline_register/test_axis_pipeline_register.py",
+  "tb/axis_ram_switch/test_axis_ram_switch.py",
+  "tb/axis_rate_limit/test_axis_rate_limit.py",
+  "tb/axis_register/test_axis_register.py",
+  "tb/axis_srl_fifo/test_axis_srl_fifo.py",
+  "tb/axis_srl_register/test_axis_srl_register.py",
+  "tb/axis_switch/test_axis_switch.py"
+ ]
+}
