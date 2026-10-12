@@ -1,0 +1,8 @@
+node v22.23.3
+strace strace -- version 6.8
+kernel 6.17.0-1022-azure
+nproc 4
+xuantie-gcc https://github.com/XUANTIE-RV/xuantie-gnu-toolchain/releases/download/2023.03.21/riscv64-elf-ubuntu-20.04-nightly-2023.03.21-nightly.tar.gz 66352ce9dc27e805591cd4172af49e6a27dc448eeac0885cfd57255c99c79064
+python Python 3.12.3
+verilator Verilator 4.228 2022-10-01 rev v4.228
+riscv64-unknown-elf-gcc riscv64-unknown-elf-gcc (GCC) 10.2.0

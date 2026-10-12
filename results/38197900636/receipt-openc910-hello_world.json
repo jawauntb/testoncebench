@@ -1,0 +1,141 @@
+{
+ "kind": "testonce replay receipt",
+ "subject": "openc910",
+ "subject_url": "https://github.com/XUANTIE-RV/openc910",
+ "subject_head": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+ "commits": [
+  {
+   "sha": "a772ed0fe455a7f236ebbdf13c168fd98b467007",
+   "tests": 1,
+   "skipped": 0,
+   "false_skips": 0,
+   "testonce_wall_s": 536.8,
+   "plain_wall_s": 446.5
+  },
+  {
+   "sha": "fdfda039769d2936628a8095ad147018dad1880a",
+   "tests": 1,
+   "skipped": 1,
+   "false_skips": 0,
+   "testonce_wall_s": 0.1,
+   "plain_wall_s": 448.3
+  },
+  {
+   "sha": "414b50db7e93fe2003beae82610e4a7057303131",
+   "tests": 1,
+   "skipped": 1,
+   "false_skips": 0,
+   "testonce_wall_s": 0.1,
+   "plain_wall_s": 451.7
+  },
+  {
+   "sha": "e0c4ad8ec7f8c70f649d826ebd6c949086453272",
+   "tests": 1,
+   "skipped": 1,
+   "false_skips": 0,
+   "testonce_wall_s": 0.1,
+   "plain_wall_s": 453.9
+  },
+  {
+   "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+   "tests": 1,
+   "skipped": 1,
+   "false_skips": 0,
+   "testonce_wall_s": 0.1,
+   "plain_wall_s": 457.3
+  }
+ ],
+ "headline": {
+  "false_skips": 0,
+  "false_skips_confirmed": 0,
+  "skip_rate_after_first_commit": 1,
+  "wall_s_plain_after_first": 1811.1,
+  "wall_s_testonce_after_first": 0.5,
+  "speedup_after_first_commit": 3622.2,
+  "speedup_all_commits": 4.2,
+  "first_run_tracing_overhead": {
+   "sing_cpu_s": 536.8,
+   "plain_cpu_s": 446.5,
+   "ratio": 1.2,
+   "wall_ratio": 1.2
+  },
+  "fault_injection": {
+   "slots": 1,
+   "effective_faults": 1,
+   "newly_failing_tests": 1,
+   "detected_tests": 1,
+   "faults_fully_detected": 1,
+   "detection_rate_by_fault": 1,
+   "detection_rate_by_test": 1,
+   "reverts_clean": true
+  },
+  "path_filter_baseline": {
+   "rule": "skip a commit whose changed files all match /^(?:docs?\\/|.*\\.(?:md|png|jpe?g|gif|svg|pdf|txt)$|README|LICENSE|AUTHORS|COPYING|\\.gitignore$)/i",
+   "wall_s_after_first": 0,
+   "speedup_of_testonce_over_path_filter": 0,
+   "commits": [
+    {
+     "sha": "fdfda039769d2936628a8095ad147018dad1880a",
+     "changed_files": 1,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    },
+    {
+     "sha": "414b50db7e93fe2003beae82610e4a7057303131",
+     "changed_files": 1,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    },
+    {
+     "sha": "e0c4ad8ec7f8c70f649d826ebd6c949086453272",
+     "changed_files": 1,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    },
+    {
+     "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+     "changed_files": 4,
+     "path_filter_runs": false,
+     "path_filter_wall_s": 0
+    }
+   ]
+  }
+ },
+ "how_to_read": "The oracle is the subject's own test command run plainly at every commit. A false skip is a test testonce skipped while the oracle failed. Speedup is plain wall time over testonce wall time on the same machine, same commits, same job count. The first commit is cold (nothing cached) and is excluded from the after-first numbers.",
+ "replay_exit_code": 0,
+ "testonce_git_head": "384a41407d211c9496b0d39c349f07d8c23c88cd",
+ "sha256": {
+  "out/openc910-hello_world.json": "b6415042f29b3754a28c4f1cfbe9dd41cb5914cffd0e688f01ab726f47dd3438",
+  "out/versions-openc910-hello_world.txt": "86ed206e3e0b7d8b39a1ebe17c6ca4ecf3424ef1a00129e7bb324f1f1bdbb4b8",
+  "bench/replay.mjs": "24a6cabb951f46bc3b820ad438dfb304b675e6ab152f2cb482a4c23a26954c02",
+  "bench/subjects.json": "9ad882f949f7376e02447eb76b4c0f065e5c0c575cd8b38aee6300a7ebf5fada",
+  "bench/rtl/openc910-case.sh": "a47f7642e0527f605256b0b59f6d270153f7f2c7f2e3420feef5473d32130c4a"
+ },
+ "tools": [
+  "node v22.23.3",
+  "strace strace -- version 6.8",
+  "kernel 6.17.0-1022-azure",
+  "nproc 4",
+  "xuantie-gcc https://github.com/XUANTIE-RV/xuantie-gnu-toolchain/releases/download/2023.03.21/riscv64-elf-ubuntu-20.04-nightly-2023.03.21-nightly.tar.gz 66352ce9dc27e805591cd4172af49e6a27dc448eeac0885cfd57255c99c79064",
+  "python Python 3.12.3",
+  "verilator Verilator 4.228 2022-10-01 rev v4.228",
+  "riscv64-unknown-elf-gcc riscv64-unknown-elf-gcc (GCC) 10.2.0"
+ ],
+ "machine": {
+  "nproc": 4,
+  "mem_gb": 15.6,
+  "kernel": "6.17.0-1022-azure",
+  "runner": "GitHub Actions 1000013305",
+  "image": "ubuntu24 20261004.327.1"
+ },
+ "run": {
+  "url": "https://github.com/jawauntb/testoncebench/actions/runs/38197900636",
+  "attempt": "1",
+  "workflow_sha": "b3b708e5be9c5766366c234199b5917931e30628",
+  "job": "replay"
+ },
+ "rerun": "node bench/replay.mjs openc910 --tests hello_world --jobs 1 --faults 1 --budget-min 270 --tag hello_world",
+ "total_runtime_s": 2806,
+ "generated_at": "2026-10-12T03:45:45.813Z",
+ "git_status_clean": true
+}

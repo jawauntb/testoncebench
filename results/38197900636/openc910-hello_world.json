@@ -1,0 +1,192 @@
+{
+ "summary": {
+  "subject": "openc910",
+  "split": "held-out",
+  "head": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+  "commits_replayed": 5,
+  "commits_requested": 5,
+  "commits_dropped": [],
+  "files_per_commit": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "file_runs": 5,
+  "false_skips": 0,
+  "false_skips_confirmed": 0,
+  "skips": 4,
+  "skip_rate_all": 0.8,
+  "skip_rate_after_first_commit": 1,
+  "oracle_failing_file_runs": 0,
+  "divergent_nonskipped_runs": 0,
+  "audit_mismatches": 0,
+  "wall_s_testonce_total": 537.4,
+  "wall_s_plain_total": 2257.7,
+  "wall_s_testonce_after_first": 0.5,
+  "wall_s_plain_after_first": 1811.1,
+  "first_run_tracing_overhead": {
+   "sing_cpu_s": 536.8,
+   "plain_cpu_s": 446.5,
+   "ratio": 1.2,
+   "wall_ratio": 1.2
+  },
+  "uncacheable_reasons": {},
+  "fault_injection": {
+   "slots": 1,
+   "effective_faults": 1,
+   "newly_failing_tests": 1,
+   "detected_tests": 1,
+   "faults_fully_detected": 1,
+   "detection_rate_by_fault": 1,
+   "detection_rate_by_test": 1,
+   "reverts_clean": true
+  },
+  "total_runtime_s": 2806,
+  "testonce_git_head": "384a41407d211c9496b0d39c349f07d8c23c88cd"
+ },
+ "faults": [
+  {
+   "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+   "attempts": [
+    {
+     "source": "C910_RTL_FACTORY/gen_rtl/cpu/rtl/ct_core.v",
+     "directImporters": null,
+     "effective": true,
+     "newlyFailing": 1,
+     "detected": 1,
+     "missed": [],
+     "revertedClean": true
+    }
+   ]
+  }
+ ],
+ "commits": [
+  {
+   "sha": "a772ed0fe455a7f236ebbdf13c168fd98b467007",
+   "index": 0,
+   "files": 1,
+   "singWallMs": 536839,
+   "oracleWallMs": 446535,
+   "rows": [
+    {
+     "file": "hello_world",
+     "skipped": false,
+     "audited": false,
+     "cached": true,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 536838,
+     "oracleCode": 0,
+     "oracleMs": 446535,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "fdfda039769d2936628a8095ad147018dad1880a",
+   "index": 1,
+   "files": 1,
+   "singWallMs": 128,
+   "oracleWallMs": 448255,
+   "rows": [
+    {
+     "file": "hello_world",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 128,
+     "oracleCode": 0,
+     "oracleMs": 448255,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "414b50db7e93fe2003beae82610e4a7057303131",
+   "index": 2,
+   "files": 1,
+   "singWallMs": 135,
+   "oracleWallMs": 451671,
+   "rows": [
+    {
+     "file": "hello_world",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 135,
+     "oracleCode": 0,
+     "oracleMs": 451671,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "e0c4ad8ec7f8c70f649d826ebd6c949086453272",
+   "index": 3,
+   "files": 1,
+   "singWallMs": 131,
+   "oracleWallMs": 453915,
+   "rows": [
+    {
+     "file": "hello_world",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 131,
+     "oracleCode": 0,
+     "oracleMs": 453915,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+   "index": 4,
+   "files": 1,
+   "singWallMs": 133,
+   "oracleWallMs": 457307,
+   "rows": [
+    {
+     "file": "hello_world",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 133,
+     "oracleCode": 0,
+     "oracleMs": 457307,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  }
+ ]
+}
