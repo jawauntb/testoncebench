@@ -7,7 +7,25 @@ Each run replays testonce on the recent history of open-source hardware projects
 ## Latest results
 
 <!-- table:start -->
-_No runs yet._
+| Subject | Commits | False skips | Faults caught | Skipped after 1st commit | vs plain | vs path filter | 1st-run overhead | testonce | Run |
+|---|---|---|---|---|---|---|---|---|---|
+| openc910-ISA_AMO | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.15x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+| openc910-csr | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.17x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+| openc910-hello_world | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.17x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+| verilog-axis | 6 | 0 | 7 of 7 | 84.0% | 2.56x | 2.05x | 1.05x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+| wb2axip | 8 | 0 | 5 of 5 | 0.0% | 0.92x | 0.78x | 1.11x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+| wb2axip-configured | 8 | 0 | 5 of 5 | 95.7% | 10.74x | 9.33x | 1.12x | `c5b0bd0` | [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150) |
+
+<details><summary>Every run</summary>
+
+- openc910-ISA_AMO: 0 false skips, docs-only commits, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+- openc910-csr: 0 false skips, docs-only commits, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+- openc910-hello_world: 0 false skips, docs-only commits, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+- verilog-axis: 0 false skips, 2.56x vs plain, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+- wb2axip-configured: 0 false skips, 10.74x vs plain, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+- wb2axip: 0 false skips, 0.92x vs plain, run [38190950150](https://github.com/jawauntb/testoncebench/actions/runs/38190950150)
+
+</details>
 <!-- table:end -->
 
 ## How to read it

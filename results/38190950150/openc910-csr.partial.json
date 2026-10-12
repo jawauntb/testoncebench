@@ -1,0 +1,146 @@
+{
+ "partial": true,
+ "commits": [
+  {
+   "sha": "a772ed0fe455a7f236ebbdf13c168fd98b467007",
+   "index": 0,
+   "files": 1,
+   "singWallMs": 328373,
+   "oracleWallMs": 279839,
+   "rows": [
+    {
+     "file": "csr",
+     "skipped": false,
+     "audited": false,
+     "cached": true,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 328372,
+     "oracleCode": 0,
+     "oracleMs": 279839,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "fdfda039769d2936628a8095ad147018dad1880a",
+   "index": 1,
+   "files": 1,
+   "singWallMs": 78,
+   "oracleWallMs": 295413,
+   "rows": [
+    {
+     "file": "csr",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 78,
+     "oracleCode": 0,
+     "oracleMs": 295413,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "414b50db7e93fe2003beae82610e4a7057303131",
+   "index": 2,
+   "files": 1,
+   "singWallMs": 69,
+   "oracleWallMs": 283970,
+   "rows": [
+    {
+     "file": "csr",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 68,
+     "oracleCode": 0,
+     "oracleMs": 283969,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "e0c4ad8ec7f8c70f649d826ebd6c949086453272",
+   "index": 3,
+   "files": 1,
+   "singWallMs": 68,
+   "oracleWallMs": 272429,
+   "rows": [
+    {
+     "file": "csr",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 68,
+     "oracleCode": 0,
+     "oracleMs": 272429,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  },
+  {
+   "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+   "index": 4,
+   "files": 1,
+   "singWallMs": 69,
+   "oracleWallMs": 272988,
+   "rows": [
+    {
+     "file": "csr",
+     "skipped": true,
+     "audited": false,
+     "cached": false,
+     "reason": null,
+     "reasonDetail": null,
+     "singCode": 0,
+     "singMs": 69,
+     "oracleCode": 0,
+     "oracleMs": 272988,
+     "falseSkip": false,
+     "falseSkipConfirmed": null,
+     "divergent": false,
+     "auditMismatch": false
+    }
+   ]
+  }
+ ],
+ "faults": [
+  {
+   "sha": "b91c90914c19f114d35c8f6b73408eb241ed847c",
+   "attempts": [
+    {
+     "source": "C910_RTL_FACTORY/gen_rtl/cpu/rtl/ct_core.v",
+     "directImporters": null,
+     "effective": true,
+     "newlyFailing": 1,
+     "detected": 1,
+     "missed": [],
+     "revertedClean": true
+    }
+   ]
+  }
+ ]
+}
