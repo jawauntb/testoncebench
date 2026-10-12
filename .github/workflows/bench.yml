@@ -50,6 +50,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { repository: jawauntb/testonce, ref: '${{ needs.plan.outputs.sha }}', path: testonce }
+      - uses: actions/checkout@v4
+        with: { path: bench }
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - working-directory: .
@@ -133,6 +135,9 @@ jobs:
       - name: Replay
         run: |
           set +e
+          # pins/ holds the test list each subject replays, so runs on any runner compare the same files.
+          pin=../bench/pins/selection-$NAME.json
+          [ -f "$pin" ] && REPLAY_ARGS="$REPLAY_ARGS --selection $pin"
           node bench/replay.mjs ${{ matrix.subject }} $REPLAY_ARGS --out out
           echo $? > out/exit-$NAME
       - name: Receipt

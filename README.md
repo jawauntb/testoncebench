@@ -46,6 +46,10 @@ Each run replays testonce on the recent history of open-source hardware projects
 
 openc910's replayed commits change only docs, so a path filter skips them too. It shows soundness and tracing overhead on a large CPU build, not a speedup.
 
+## Which tests are replayed
+
+`pins/selection-<subject>.json` lists the test files each subject replays. They were chosen once, by run 38190950150 on a 4-core runner: the first files in name order that passed within a time limit at the newest replayed commit. The list is pinned because that rule keeps more files on a faster machine. On a 2-core runner, verilog-axis kept 11 files and measured 5.6x; on 4 cores it kept 15, including a slow test the replayed commits edit, and measured 2.6x. openc910 replays named cases, so it needs no pin.
+
 ## Check a run yourself
 
 Every run folder in `results/` holds, per subject: the raw rows (`<subject>.json`), the tool versions and download hashes (`versions-*.txt`), and a receipt (`receipt-*.json`) with sha256 hashes of those files, of the harness, and of the wrapper scripts, plus the runner and the Actions run URL. `testonce-commit.txt` is the testonce commit that ran.

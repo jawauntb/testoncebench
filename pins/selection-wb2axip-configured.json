@@ -1,0 +1,27 @@
+{
+ "subject": "wb2axip-configured",
+ "newest": "2e8d3bc2d26ddc33d1881022a2a2b9d3f0c16b9b",
+ "rule": "first 20 files in name order whose oracle exit is 0 within 240s at the newest replayed commit",
+ "files": [
+  "bench/formal/addrdecode.sby",
+  "bench/formal/afifo.sby",
+  "bench/formal/apbslave.sby",
+  "bench/formal/apbxclk.sby",
+  "bench/formal/axi_addr_miter.sby",
+  "bench/formal/axil2apb.sby",
+  "bench/formal/axildouble.sby",
+  "bench/formal/axilempty.sby",
+  "bench/formal/axilgpio.sby",
+  "bench/formal/axilrd2wbsp.sby",
+  "bench/formal/axilsafety.sby",
+  "bench/formal/axilsingle.sby",
+  "bench/formal/axilupsz.sby",
+  "bench/formal/axilwr2wbsp.sby",
+  "bench/formal/axiperf.sby",
+  "bench/formal/axisbroadcast.sby",
+  "bench/formal/axispacker.sby",
+  "bench/formal/axisrandom.sby",
+  "bench/formal/axissafety.sby",
+  "bench/formal/axisswitch.sby"
+ ]
+}
