@@ -1,0 +1,9 @@
+node v22.23.4
+strace strace -- version 6.8
+kernel 7.0.0-1017-azure
+nproc 4
+oss-cad-suite 2026-11-09 256b113c88b8da8b363e739dd97babe89eefbfdbb84373ccae0666ae19ac304d
+iverilog Icarus Verilog version 14.0 (devel) (s20260301-918-g3e2189b36-dirty)
+python Python 3.12.3
+yosys Yosys 0.70+360 (git sha1 5e740962d, Release, Clang /usr/bin/clang++ 21.1.8)
+verilator Verilator 5.055 devel rev v5.054-161-g0872abe09 (mod)

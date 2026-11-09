@@ -9,15 +9,21 @@ Each run replays testonce on the recent history of open-source hardware projects
 <!-- table:start -->
 | Subject | Commits | False skips | Faults caught | Skipped after 1st commit | vs plain | vs path filter | 1st-run overhead | testonce | Run |
 |---|---|---|---|---|---|---|---|---|---|
-| openc910-ISA_AMO | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.12x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
-| openc910-csr | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.15x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
-| openc910-hello_world | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.17x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
-| verilog-axis | 6 | 0 | 7 of 7 | 84.0% | 2.65x | 2.12x | 1.06x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
-| wb2axip | 8 | 0 | 5 of 5 | 0.0% | 0.95x | 0.81x | 1.01x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
-| wb2axip-configured | 8 | 0 | 5 of 5 | 92.1% | 7.73x | 6.65x | 1.07x | `4f03e9e` | [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239) |
+| openc910-ISA_AMO | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.15x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
+| openc910-csr | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.17x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
+| openc910-hello_world | 5 | 0 | 1 of 1 | 100.0% | docs-only commits | same as testonce | 1.16x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
+| verilog-axis | 6 | 0 | 7 of 7 | 84.0% | 2.6x | 2.08x | 1.05x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
+| wb2axip | 8 | 0 | 5 of 5 | 0.0% | 0.95x | 0.81x | 1.03x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
+| wb2axip-configured | 8 | 0 | 5 of 5 | 92.1% | 7.48x | 6.41x | 1.05x | `4f03e9e` | [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359) |
 
 <details><summary>Every run</summary>
 
+- openc910-ISA_AMO: 0 false skips, docs-only commits, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
+- openc910-csr: 0 false skips, docs-only commits, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
+- openc910-hello_world: 0 false skips, docs-only commits, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
+- verilog-axis: 0 false skips, 2.6x vs plain, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
+- wb2axip-configured: 0 false skips, 7.48x vs plain, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
+- wb2axip: 0 false skips, 0.95x vs plain, run [42655060359](https://github.com/jawauntb/testoncebench/actions/runs/42655060359)
 - openc910-ISA_AMO: 0 false skips, docs-only commits, run [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239)
 - openc910-csr: 0 false skips, docs-only commits, run [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239)
 - openc910-hello_world: 0 false skips, docs-only commits, run [41477505239](https://github.com/jawauntb/testoncebench/actions/runs/41477505239)
